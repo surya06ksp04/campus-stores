@@ -299,6 +299,20 @@
       "Desk book",
       "Messages from clubs and notes for the next shift",
     );
+
+    if (s.phase >= 2) {
+      html +=
+        '<div class="record" style="border-left:5px solid #c65a2e;background:#fff4df;padding:16px;margin-bottom:16px">' +
+        '<h3>Shift handover summary</h3>' +
+        '<p><b>Film Society · RQ-214</b></p>' +
+        '<p>✅ Projector — returned</p>' +
+        '<p>✅ Speaker — returned</p>' +
+        '<p>✅ Adapter — received from Leela</p>' +
+        '<p><b>⚠️ Check loan record:</b> The outstanding register showed MI-09 (wireless microphone) under RQ-209 · Debate Union, not the Film Society screening.</p>' +
+        '<p><b>Action:</b> Confirm the correct loan before closing a return.</p>' +
+        "</div>";
+    }
+
     const entries = [
       [
         "Friday · 3:20 pm",
@@ -311,14 +325,17 @@
         "Our microphone stays with me overnight. I’ll return it by 10 am Saturday.",
       ],
     ];
+
     if (s.phase >= 1)
       entries.push([
         "Friday · 7:30 pm",
         "Kabir Sen · Film Society",
         "I brought the projector and speaker. Leela Das has our adapter. She’ll be at the counter at 9 am tomorrow.",
       ]);
+
     for (const n of s.notes)
       entries.push([shifts[n.phase].time, "Counter handover", n.text]);
+
     for (const [t, author, body] of entries.slice().reverse())
       html +=
         '<article class="record"><small>' +
@@ -328,6 +345,7 @@
         "</h3><p>" +
         esc(body) +
         "</p></article>";
+
     return (
       html +
       '<form data-note><div class="form"><label class="full"><span>Note for the next shift</span><textarea name="note" rows="2" maxlength="400" required></textarea></label></div><button type="submit">Add handover note</button></form>'
