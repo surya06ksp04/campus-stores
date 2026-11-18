@@ -1,4 +1,60 @@
-# Campus Stores
+Product Engineering Review – Campus Stores
+
+1. What works well
+
+The inventory and loan register work well together. Each physical unit has its own asset ID, and the system distinguishes between equipment on the shelf, on loan, and in repair.
+
+During the Film Society pickup, this helps the desk staff issue only approved and available equipment. It also prevents issuing the same equipment type twice for the same request.
+
+2. What I would change
+
+I would improve the partial-return and shift-handover experience.
+
+In the current workflow, Kabir returns the projector and speaker on Friday evening, while Leela promises to return the adapter on Saturday morning. The next shift must read the desk book, identify the outstanding equipment, and manually work out which record needs to be closed.
+
+This creates unnecessary mental effort and leaves room for mistakes.
+
+3. Proposed improvement: Smart Handover Checklist
+
+I propose adding an automatic handover checklist linked to the original request and loan records.
+
+The checklist would show:
+
+- Request ID and club name.
+- Equipment originally issued.
+- Equipment already returned.
+- Equipment still outstanding.
+- Expected return time.
+- Person expected to return it.
+
+Prototype – Handover screen
+
+Equipment| Status| Next action
+HDMI projector| Returned| Closed
+Portable speaker| Returned| Closed
+USB-C to HDMI adapter| Outstanding| Awaiting return
+
+Next shift action: Confirm the adapter's asset ID, record its return, and close the correct outstanding record.
+
+4. Walkthrough using the improved design
+
+Friday – 3:45 PM: Kabir collects the Film Society equipment. The system checks the approved request and available physical units.
+
+Friday – 7:30 PM: Kabir returns the projector and speaker. The system updates their status and automatically keeps the adapter outstanding.
+
+Saturday – 9:00 AM: Leela brings the adapter. The morning staff can see the pending return immediately, verify its asset ID, and close the correct record.
+
+5. What I would keep
+
+I would retain the existing individual asset IDs, inventory status tracking, approved-request validation, and simple loan register. These provide a good foundation for reliable equipment tracking.
+
+6. How I would measure success
+
+At a real equipment counter, I would observe the time taken by the next shift to identify and complete pending returns.
+
+I would compare the average handover completion time and the number of missed or incorrectly closed returns before and after introducing the checklist.
+
+The goal is to reduce manual searching, improve accountability, and make shift changes easier.# Campus Stores
 
 Campus Stores is a Product Engineer work sample set at a fictional campus media equipment desk. Work through a club’s screening, from equipment pickup to a partial return and the next morning’s handover. Open **Candidate brief** in the app for the assignment.
 
