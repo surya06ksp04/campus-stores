@@ -27,12 +27,42 @@ The checklist would show:
 - Expected return time.
 - Person expected to return it.
 
-Prototype – Handover screen
+Prototype – Smart Handover Screen
 
-Equipment| Status| Next action
-HDMI projector| Returned| Closed
-Portable speaker| Returned| Closed
-USB-C to HDMI adapter| Outstanding| Awaiting return
+┌──────────────────────────────────────────────┐
+│           CAMPUS STORES                      │
+│           SHIFT HANDOVER                     │
+├──────────────────────────────────────────────┤
+│ Club: Film Society                           │
+│ Request: Film Screening                      │
+│ Issued to: Kabir                              │
+│ Handover to: Leela                            │
+│                                              │
+│ EQUIPMENT STATUS                             │
+│                                              │
+│ 1. HDMI Projector                             │
+│    Status: RETURNED                           │
+│    Action: Closed                             │
+│                                              │
+│ 2. Portable Speaker                           │
+│    Status: RETURNED                           │
+│    Action: Closed                             │
+│                                              │
+│ 3. USB-C to HDMI Adapter                      │
+│    Status: OUTSTANDING                        │
+│    Expected: Saturday, 9:00 AM                │
+│    Action: Awaiting return                    │
+│                                              │
+├──────────────────────────────────────────────┤
+│ NEXT SHIFT ACTION                             │
+│                                              │
+│ [ ] Verify adapter asset ID                   │
+│ [ ] Confirm physical return                   │
+│ [ ] Update inventory status                   │
+│ [ ] Close outstanding loan                    │
+└──────────────────────────────────────────────┘
+
+Design principle: The next shift should immediately identify what has been returned, what is pending, and what action is required without searching through handwritten notes.
 
 Next shift action: Confirm the adapter's asset ID, record its return, and close the correct outstanding record.
 
