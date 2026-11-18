@@ -1,4 +1,4 @@
-## Product Engineering Practical — My Changes
+## Product Engineering Practical 
 
 ### What works well
 The loan register provides a simple way to record equipment returns. When a return is recorded, the item is marked as returned to stock and the loan slip is closed, reducing manual tracking.
