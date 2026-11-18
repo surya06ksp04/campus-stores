@@ -6,7 +6,7 @@ The loan register provides a simple way to record equipment returns. When a retu
 ### Problem identified
 The shift handover information is spread across messages. Staff taking over a shift need to read multiple notes to understand which equipment has been returned, what is outstanding, and whether the correct loan record is being updated.
 
-### My solution
+### Solution
 I added a **Shift Handover Summary** to the Desk Book for the Film Society screening (RQ-214).
 
 The summary highlights:
