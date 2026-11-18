@@ -1,116 +1,184 @@
-Product Engineering Review – Campus Stores
+Campus Stores – Product Engineering Review
 
-1. What works well
+Product: Campus Stores – Media Equipment Desk
+Role: Product Engineer
+Focus: Equipment pickup, partial returns and shift handover
 
-The inventory and loan register work well together. Each physical unit has its own asset ID, and the system distinguishes between equipment on the shelf, on loan, and in repair.
+---
 
-During the Film Society pickup, this helps the desk staff issue only approved and available equipment. It also prevents issuing the same equipment type twice for the same request.
+1. Understanding the Product
 
-2. What I would change
+Campus Stores is an equipment management application for a fictional campus media equipment desk.
 
-I would improve the partial-return and shift-handover experience.
+The application allows staff to manage equipment requests, check inventory, record equipment loans and maintain handover information between shifts.
 
-In the current workflow, Kabir returns the projector and speaker on Friday evening, while Leela promises to return the adapter on Saturday morning. The next shift must read the desk book, identify the outstanding equipment, and manually work out which record needs to be closed.
+My focus was to understand the complete Film Society screening workflow, from equipment pickup on Friday afternoon to the partial return on Friday evening and the next morning's handover.
 
-This creates unnecessary mental effort and leaves room for mistakes.
+2. What Works Well
 
-3. Proposed improvement: Smart Handover Checklist
+Individual Equipment Identification
 
-I propose adding an automatic handover checklist linked to the original request and loan records.
+One thing I liked about the product is that each physical equipment unit has its own asset ID.
 
-The checklist would show:
+For example, the inventory contains two USB-C to HDMI adapters:
 
-- Request ID and club name.
-- Equipment originally issued.
+- AD-12 – Belkin AVC002
+- AD-15 – Anker A8312
+
+This is useful because staff need to identify the exact physical item rather than simply knowing the equipment type.
+
+During the Film Society pickup, this level of identification helps the staff select and track the correct equipment.
+
+Why I would keep it: Individual asset identification makes inventory tracking more reliable and helps avoid confusion when multiple units belong to the same equipment category.
+
+3. What I Would Change
+
+Improving Partial Returns and Shift Handover
+
+I would improve the way the application communicates outstanding equipment during a shift change.
+
+Consider the Film Society scenario:
+
+- Friday, 3:45 PM: Kabir collects equipment for the screening.
+- Friday, 7:30 PM: Kabir returns the projector and speaker.
+- The adapter is still with Leela, who promises to return it on Saturday at 9:00 AM.
+- Saturday, 9:00 AM: The morning staff must identify the outstanding equipment and close the correct loan.
+
+The challenge is that the next shift needs to understand the previous shift's activity before taking action.
+
+I would make this information more visible and actionable instead of depending on staff to manually interpret handover notes.
+
+4. Proposed Improvement – Smart Handover Checklist
+
+My proposed improvement is a dedicated handover summary linked to the original request and individual asset records.
+
+It should clearly communicate:
+
+- Original request and club name.
+- Equipment issued.
 - Equipment already returned.
 - Equipment still outstanding.
 - Expected return time.
-- Person expected to return it.
+- Person responsible for the pending return.
+- Next action required by the staff.
 
 Prototype – Smart Handover Screen
 
-┌──────────────────────────────────────────────┐
-│           CAMPUS STORES                      │
-│           SHIFT HANDOVER                     │
-├──────────────────────────────────────────────┤
-│ Club: Film Society                           │
-│ Request: Film Screening                      │
-│ Issued to: Kabir                              │
-│ Handover to: Leela                            │
-│                                              │
-│ EQUIPMENT STATUS                             │
-│                                              │
-│ 1. HDMI Projector                             │
-│    Status: RETURNED                           │
-│    Action: Closed                             │
-│                                              │
-│ 2. Portable Speaker                           │
-│    Status: RETURNED                           │
-│    Action: Closed                             │
-│                                              │
-│ 3. USB-C to HDMI Adapter                      │
-│    Status: OUTSTANDING                        │
-│    Expected: Saturday, 9:00 AM                │
-│    Action: Awaiting return                    │
-│                                              │
-├──────────────────────────────────────────────┤
-│ NEXT SHIFT ACTION                             │
-│                                              │
-│ [ ] Verify adapter asset ID                   │
-│ [ ] Confirm physical return                   │
-│ [ ] Update inventory status                   │
-│ [ ] Close outstanding loan                    │
-└──────────────────────────────────────────────┘
+CAMPUS STORES | SHIFT HANDOVER
 
-Design principle: The next shift should immediately identify what has been returned, what is pending, and what action is required without searching through handwritten notes.
+Club: Film Society
+Request: RQ-214 – Courtyard Screening
+Issued to: Kabir Sen
+Pending return contact: Leela Das
 
-Next shift action: Confirm the adapter's asset ID, record its return, and close the correct outstanding record.
+Equipment Status
 
-4. Walkthrough using the improved design
+Equipment| Asset ID| Status| Action
+HDMI Projector| PR-04| Returned| Closed
+Portable Speaker| SP-02| Returned| Closed
+USB-C Adapter| AD-12| Outstanding| Awaiting return
 
-Friday – 3:45 PM: Kabir collects the Film Society equipment. The system checks the approved request and available physical units.
+Expected return: Saturday, 9:00 AM
 
-Friday – 7:30 PM: Kabir returns the projector and speaker. The system updates their status and automatically keeps the adapter outstanding.
+Next Shift Action
 
-Saturday – 9:00 AM: Leela brings the adapter. The morning staff can see the pending return immediately, verify its asset ID, and close the correct record.
+- [ ] Verify the adapter's physical asset ID.
+- [ ] Match it with the outstanding loan.
+- [ ] Confirm the physical return.
+- [ ] Update inventory status.
+- [ ] Close the outstanding loan.
 
-5. What I would keep
+Important: The asset ID must be verified before closing the loan because the inventory contains multiple adapters.
 
-I would retain the existing individual asset IDs, inventory status tracking, approved-request validation, and simple loan register. These provide a good foundation for reliable equipment tracking.
+Design Principle
 
-6. How I would measure success
+The next shift should immediately understand what has been returned, what is pending and what action needs to be taken without searching through previous records.
 
-At a real equipment counter, I would observe the time taken by the next shift to identify and complete pending returns.
+5. Walkthrough Using the Proposed Improvement
 
-I would compare the average handover completion time and the number of missed or incorrectly closed returns before and after introducing the checklist.
+Friday – 3:45 PM | Equipment Pickup
 
-The goal is to reduce manual searching, improve accountability, and make shift changes easier.# Campus Stores
+Kabir arrives to collect the Film Society equipment.
 
-Campus Stores is a Product Engineer work sample set at a fictional campus media equipment desk. Work through a club’s screening, from equipment pickup to a partial return and the next morning’s handover. Open **Candidate brief** in the app for the assignment.
+The staff checks the request, verifies available equipment and records the physical asset IDs issued.
 
-## Run the app
+Friday – 7:30 PM | Partial Return
 
-Open `index.html` in a modern browser. The app includes its scripts, styles, and icons and can run offline.
+Kabir returns the projector and speaker.
 
-To serve it over local HTTP, run this from the repository folder and visit `http://localhost:8000`.
+The staff records these returns individually. The adapter remains outstanding.
 
-```sh
+The handover summary automatically displays the pending adapter and its expected return time.
+
+Saturday – 9:00 AM | Morning Shift
+
+The morning staff opens the handover summary.
+
+Leela arrives with an adapter. The staff verifies its asset ID against the outstanding loan, confirms the physical return and closes the correct record.
+
+This reduces the need to reconstruct the previous evening's events manually.
+
+6. What I Would Keep
+
+I would retain the following existing features:
+
+- Individual asset identification.
+- Inventory management.
+- Equipment request records.
+- Loan register.
+- Desk book and handover information.
+- Simple navigation between different records.
+
+These features already provide a useful foundation for managing equipment at a campus desk.
+
+My improvement focuses on connecting the existing information more clearly rather than making the application unnecessarily complicated.
+
+7. How I Would Measure Success
+
+I would evaluate the improvement through observation at a real equipment counter.
+
+The main observation would be:
+
+How long does the next shift take to identify and correctly close an outstanding equipment return?
+
+I would compare the average handover completion time before and after introducing the checklist.
+
+I would also observe whether staff make fewer mistakes while identifying equipment and closing outstanding loans.
+
+The expected outcome is faster handovers, fewer missed returns and better accountability between shifts.
+
+8. Final Thoughts
+
+I would keep the existing simplicity of Campus Stores while improving the visibility of information during shift changes.
+
+A good product should not only help staff complete individual tasks but also make it easier for the next person to continue the work without confusion.
+
+My proposed Smart Handover Checklist focuses on making that transition clearer, faster and more reliable.
+
+---
+
+Project Information
+
+Campus Stores is a standalone application containing its own scripts, styles and icons.
+
+Source Files
+
+- "index.html" – Application layout, candidate brief and bundled icons.
+- "app.js" – Sample records and application interactions.
+- "styles.css" – Desktop and mobile layouts.
+
+Running the Application
+
+Open "index.html" in a modern browser.
+
+Alternatively, run the following command from the repository folder:
+
 python3 -m http.server 8000 --bind 127.0.0.1
-```
 
-Each browser stores its own sample shift locally when browser storage is available. **Restart sample shift** restores the fictional starting records.
+Then visit "http://localhost:8000".
 
-## Source
+The application stores sample shift data locally in the browser when browser storage is available.
 
-- `index.html` contains the desk layout, candidate brief, and bundled icons.
-- `app.js` contains the sample records and interactions.
-- `styles.css` defines the desktop and mobile layouts.
+Original Repository
 
-Icon license notices are in [third-party/lucide-LICENSE.txt](third-party/lucide-LICENSE.txt).
-
-
-## Submit your work
-
-1. [Fork Campus Stores](https://github.com/virinchi-healthcare/campus-stores/fork) into your GitHub account. Complete the candidate brief and push your changes to your public fork. In your README, point reviewers to your work and explain the decision you made.
-2. In your fork, open **Commits**, select the final commit you want reviewed, and copy the page URL. It should look like `https://github.com/YOUR-USERNAME/campus-stores/commit/COMMIT-SHA`.
-3. [Submit your work through the Google Form](https://docs.google.com/forms/d/e/1FAIpQLScvzoh1R4WS-SkiwAVBQbMvniieJYSoOEfLMyVo5CyjOvYUgQ/viewform). Your **roll number**, **email ID**, and **final commit link from your public fork** are required. Enter your roll number and email ID in the form only.
+https://github.com/virinchi-healthcare/campus-stores
